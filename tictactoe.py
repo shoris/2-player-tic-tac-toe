@@ -53,8 +53,58 @@ def player_move():
 			print "Please type a number between 0 or 8 and choose and empty space"
 
 def is_winner():
-	pass
+	# check if there is a winner
 
+	# horizontal win conditions
+	if ((board[0] != " ") and (board[1] != " ") and (board[2] != " ")) and board[0] == board[1] == board[2]:
+		print "%c wins!" % (board[0])
+		play_again()
+	elif ((board[3] != " ") and (board[4] != " ") and (board[5] != " ")) and board[3] == board[4] == board[5]:
+		print "%c wins!" % (board[3])
+		play_again()
+	elif ((board[6] != " ") and (board[7] != " ") and (board[8] != " ")) and board[6] == board[7] == board[8]:
+		print "%c wins!" % (board[6])
+		play_again()
+
+	# vertical win conditions
+	elif ((board[0] != " ") and (board[3] != " ") and board[6] != " ") and board[0] == board[3] == board[6]:
+		print "%c wins!" % (board[0])
+		play_again()
+	elif ((board[1] != " ") and (board[4] != " ") and board[7] != " ") and board[1] == board[4] == board[7]:
+		print "%c wins!" % (board[1])
+		play_again()
+	elif ((board[2] != " ") and (board[5] != " ") and board[8] != " ") and board[2] == board[5] == board[8]:
+		print "%c wins!" % (board[2])
+		play_again()
+
+	# diagonal win conditions
+	elif ((board[0] != " ") and (board[4] != " ") and board[8] != " ") and board[0] == board[4] == board[8]:
+		print "%c wins!" % (board[0])
+		play_again()
+	elif ((board[2] != " ") and (board[4] != " ") and board[6] != " ") and board[2] == board[4] == board[6]:
+		print "%c wins!" % (board[2])
+		play_again()
+
+def play_again():
+	while 1:
+		print "Do you want to play again? y/n"
+		try:
+			ynchoice = raw_input("> ").lower()
+		except (ValueError, TypeError):
+			print "Please enter y/n"
+
+		if ynchoice == 'y':
+			clear_board() # doesn't work yet
+			start_game()
+		elif ynchoice == 'n':
+			sys.exit()
+		else:
+			print "Please enter y/n"
+			continue
+def clear_board():
+	for board_space in board:
+		board_space = " "
+			
 def is_draw():
 	pass
 
