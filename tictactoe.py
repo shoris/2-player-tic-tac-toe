@@ -3,15 +3,21 @@
 # to play, run python tictactoe.py
 # todo: use socket to run over network
 
-import os
+# import os
+import sys
 import random
 
-board = [" ", " ", " ",
+def start_game():
+	print "Welcome to 2 Player Tic-Tac-Toe!"
+	print "X moves first."
+
+	# assign blank values to board/clear board when new game
+	global board 
+	board = [" ", " ", " ",
 		" ", " ", " ",
 		" ", " ", " "
 		]
-
-
+	player_move()
 
 def draw_board():
 	""" draw game board """
@@ -24,10 +30,9 @@ def draw_board():
 
 def player_move():
 	""" method containing main game loop """
-	done = False
 	moves = ['X', 'O']
 	current_move = moves[0]
-	while not done:
+	while 1:
 		# Game loop
 		print "Place %c where? Choose an empty space, numbered 0-8" % (current_move)
 		print "beginning in the upper left."
@@ -101,21 +106,11 @@ def play_again():
 		else:
 			print "Please enter y/n"
 			continue
-def clear_board():
-	for board_space in board:
-		board_space = " "
 			
 def is_draw():
-	pass
-
-def start_game():
-	print "Welcome to 2 Player Tic-Tac-Toe!"
-	print "X moves first."
-	draw_board()
-	player_move()
-
-def main():
-	pass
+	if all(space != " " for space in board):
+		print "It's a draw!"
+		play_again()
 
 start_game()
 
